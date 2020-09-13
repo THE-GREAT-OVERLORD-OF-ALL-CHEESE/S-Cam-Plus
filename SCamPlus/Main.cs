@@ -96,9 +96,6 @@ public class SCamPlus : VTOLMOD
     public static float aceZoomLerp = 0.5f;
 
 
-    public UnityAction<bool> hudBracket_changed;
-    public static bool hudBracket = false;
-
     public static Vector3 lastOffset;
     public static Quaternion lastRotation;
     public static float lastFov = 60;
@@ -171,14 +168,6 @@ public class SCamPlus : VTOLMOD
 
         settings.CreateCustomLabel("");
 
-        settings.CreateCustomLabel("Hud Camera Settings");
-
-        hudBracket_changed += hudBracket_Setting;
-        settings.CreateCustomLabel("Show HUD Bracket:");
-        settings.CreateBoolSetting("(Default = false)", hudBracket_changed, hudBracket);
-
-        settings.CreateCustomLabel("");
-
         settings.CreateCustomLabel("Please feel free to @ me on the discord if");
         settings.CreateCustomLabel("you think of any more features I could add!");
         VTOLAPI.CreateSettingsMenu(settings);
@@ -222,11 +211,6 @@ public class SCamPlus : VTOLMOD
     public void aceZoomLerp_Setting(float newval)
     {
         aceZoomLerp = newval;
-    }
-
-    public void hudBracket_Setting(bool newval)
-    {
-        hudBracket = newval;
     }
 
     //This function is called every time a scene is loaded. this behaviour is defined in Awake().

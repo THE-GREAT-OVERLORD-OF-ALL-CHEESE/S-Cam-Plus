@@ -28,11 +28,11 @@ public class SCamPlus : VTOLMOD
         //AceMissile
         TGP,
         HUD,
-        ExtCam
+        ExtCam,
         //SmoothZoom
-        //GroundTrack2
+        //GroundTrack2 --- Ground view that tracks 2 aircraft
         //OverShoulder
-        //FreeCam
+        FreeCam
         //FreeCamParented
     }
 
@@ -95,10 +95,15 @@ public class SCamPlus : VTOLMOD
     public UnityAction<float> aceZoomLerp_changed;
     public static float aceZoomLerp = 0.5f;
 
-
+    //smoothing variables
     public static Vector3 lastOffset;
     public static Quaternion lastRotation;
     public static float lastFov = 60;
+
+    //freecam settings
+    public static Vector2 rotation = new Vector2(0, 0);
+    public static float sensitivity = 2;
+    public static Vector3D position;
 
     public override void ModLoaded()
     {
@@ -221,8 +226,10 @@ public class SCamPlus : VTOLMOD
             case VTOLScenes.Akutan:
             case VTOLScenes.CustomMapBase:
                 StartCoroutine("SetupScene");
+                Cursor.visible = false;
                 break;
             default:
+                Cursor.visible = true;
                 break;
         }
     }

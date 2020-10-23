@@ -69,11 +69,27 @@ class Patch2
         //SCamPlus.sCamTraverse.Method("UpdateBehaviorText");
         SCamPlus.UpdateBehaviourText(__instance);
 
-        if ((bool)SCamPlus.sCamTraverse.Field("flyCamEnabled").GetValue() && (int)currentBehaviour <= 6)
-        {
-            SCamPlus.sCamTraverse.Method("SetupFlybyPosition",(FlybyCameraMFDPage.SpectatorBehaviors)(-1));
+        if ((bool)SCamPlus.sCamTraverse.Field("flyCamEnabled").GetValue()) {
+            if ((int)currentBehaviour <= 6)
+            {
+                //SCamPlus.sCamTraverse.Method("SetupFlybyPosition").GetValue();
+                __instance.EnableCamera();
+            }
+            else {
+                switch (currentBehaviour)
+                {
+                    case SCamPlus.SpectatorBehaviorsPlus.HUD:
+                        __instance.flybyCam.cullingMask = SCamPlus.fpvBitmask;
+                        break;
+                    case SCamPlus.SpectatorBehaviorsPlus.FreeCam:
+                        SCamPlus.position = VTMapManager.WorldToGlobalPoint(__instance.flybyCam.transform.position);
+                        break;
+                    default:
+                        __instance.flybyCam.cullingMask = SCamPlus.normalBitmask;
+                        break;
+                }
+            }
         }
-
         return false;
     }
 }
@@ -86,8 +102,7 @@ class Patch3
     {
         if (!(bool)SCamPlus.sCamTraverse.Field("flyCamEnabled").GetValue())
             return false;
-        __instance.flybyCam.nearClipPlane = 0.02f;
-        __instance.flybyCam.cullingMask =  SCamPlus.normalBitmask;
+        __instance.flybyCam.nearClipPlane = 0.02f;        
         __instance.flybyCam.fieldOfView = SCamPlus.fovList[(int)SCamPlus.sCamTraverse.Field("fovIdx").GetValue()];
 
         SCamPlus.SpectatorBehaviorsPlus currentBehaviour = (SCamPlus.SpectatorBehaviorsPlus)SCamPlus.sCamTraverse.Field("behavior").GetValue();
@@ -180,7 +195,6 @@ class Patch3
                     //    hudSize *= 0.5f;
                     //}
 
-                    __instance.flybyCam.cullingMask = SCamPlus.fpvBitmask;
                     //__instance.flybyCam.fieldOfView = SCamPlus.fovList[(int)SCamPlus.sCamTraverse.Field("fovIdx").GetValue()];
 
                     __instance.flybyCam.transform.position = SCamPlus.player.transform.TransformPoint(hudPos);
@@ -213,6 +227,24 @@ class Patch3
                     SCamPlus.extCamManager = VTOLAPI.GetPlayersVehicleGameObject().GetComponentInChildren<ExternalCamManager>();
                     __instance.behaviorText.text = "NoExtCam";
                 }
+                break;
+            case SCamPlus.SpectatorBehaviorsPlus.FreeCam:
+                if (Input.GetKeyDown(KeyCode.Mouse0)) {
+                    __instance.CycleFovs();
+                }
+
+                SCamPlus.rotation.y += Input.GetAxis("Mouse X") * SCamPlus.sensitivity/60 * __instance.flybyCam.fieldOfView;
+                SCamPlus.rotation.x += Input.GetAxis("Mouse Y") * -SCamPlus.sensitivity/60 * __instance.flybyCam.fieldOfView;
+
+                SCamPlus.rotation.x = Mathf.Clamp(SCamPlus.rotation.x, -90, 90);
+                __instance.flybyCam.transform.eulerAngles = (Vector2)SCamPlus.rotation;
+
+                float speedFactor = 10;
+                if (Input.GetKey(KeyCode.LeftShift)) {
+                    speedFactor = 1000;
+                }
+                SCamPlus.position += (__instance.flybyCam.transform.forward * Input.GetAxis("Vertical") + __instance.flybyCam.transform.right * Input.GetAxis("Horizontal")) * Time.deltaTime * speedFactor;
+                __instance.flybyCam.transform.position = VTMapManager.GlobalToWorldPoint(SCamPlus.position);
                 break;
             default:
                 return true;

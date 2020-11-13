@@ -33,6 +33,8 @@ class Patch5
         SCamPlus.headBitmask |= 272629760;
         SCamPlus.headBitmask ^= 2097152;
         SCamPlus.headBitmask ^= 1048576;
+
+        SCamPlus.sCamTraverse.Field("behavior").SetValue(0);//baha update broke loading this value, so im fixing it
     }
 }
 
@@ -57,26 +59,26 @@ class Patch2
             return false;
 
         Debug.Log("Incrementing S-Cam mode");
-        SCamPlus.SpectatorBehaviorsPlus currentBehaviour = (SCamPlus.SpectatorBehaviorsPlus)SCamPlus.sCamTraverse.Field("behavior").GetValue();
-        currentBehaviour++;
-        if ((int)currentBehaviour >= SCamPlus.ammountOfModes) {
-            currentBehaviour = 0;
+
+        SCamPlus.currentBehaviour++;
+        if ((int)SCamPlus.currentBehaviour >= SCamPlus.ammountOfModes) {
+            SCamPlus.currentBehaviour = 0;
             Debug.Log("Too large, reseting to 0");
         }
-        Debug.Log("S-Cam Mode is now " + currentBehaviour.ToString());
-        SCamPlus.sCamTraverse.Field("behavior").SetValue((int)currentBehaviour);
+        Debug.Log("S-Cam Mode is now " + SCamPlus.currentBehaviour.ToString());
 
         //SCamPlus.sCamTraverse.Method("UpdateBehaviorText");
         SCamPlus.UpdateBehaviourText(__instance);
 
         if ((bool)SCamPlus.sCamTraverse.Field("flyCamEnabled").GetValue()) {
-            if ((int)currentBehaviour <= 6)
+            if ((int)SCamPlus.currentBehaviour <= 6)
             {
                 //SCamPlus.sCamTraverse.Method("SetupFlybyPosition").GetValue();
+                SCamPlus.sCamTraverse.Field("behavior").SetValue((int)SCamPlus.currentBehaviour);//we can only update this value to be within the range the game normally expects, or it causes issues when loading saves
                 __instance.EnableCamera();
             }
             else {
-                switch (currentBehaviour)
+                switch (SCamPlus.currentBehaviour)
                 {
                     case SCamPlus.SpectatorBehaviorsPlus.HUD:
                         __instance.flybyCam.cullingMask = SCamPlus.fpvBitmask;
@@ -105,8 +107,7 @@ class Patch3
         __instance.flybyCam.nearClipPlane = 0.02f;        
         __instance.flybyCam.fieldOfView = SCamPlus.fovList[(int)SCamPlus.sCamTraverse.Field("fovIdx").GetValue()];
 
-        SCamPlus.SpectatorBehaviorsPlus currentBehaviour = (SCamPlus.SpectatorBehaviorsPlus)SCamPlus.sCamTraverse.Field("behavior").GetValue();
-        switch (currentBehaviour) {
+        switch (SCamPlus.currentBehaviour) {
             case SCamPlus.SpectatorBehaviorsPlus.TGP:
                 if (SCamPlus.tgpMFD != null)
                 {

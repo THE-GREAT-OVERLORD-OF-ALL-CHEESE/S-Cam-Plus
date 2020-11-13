@@ -50,6 +50,8 @@ public class SCamPlus : VTOLMOD
     public static Traverse sCamTraverse;
     public static int ammountOfModes;
 
+    public static SpectatorBehaviorsPlus currentBehaviour;
+
     public static TargetingMFDPage tgpMFD;
     public static ExternalCamManager extCamManager;
     public static float lastRenderTime;
@@ -105,6 +107,9 @@ public class SCamPlus : VTOLMOD
     public static float sensitivity = 2;
     public static Vector3D position;
 
+    public static List<CameraMode> cameraModes;
+    public static Settings settings;
+
     public override void ModLoaded()
     {
         HarmonyInstance harmony = HarmonyInstance.Create("cheese.SCam+");
@@ -116,7 +121,8 @@ public class SCamPlus : VTOLMOD
 
         ammountOfModes = Enum.GetValues(typeof(SpectatorBehaviorsPlus)).Length;
 
-        Settings settings = new Settings(this);
+        cameraModes = new List<CameraMode>();
+        settings = new Settings(this);
         settings.CreateCustomLabel("S-Cam+ Settings");
 
         settings.CreateCustomLabel("");
@@ -176,6 +182,9 @@ public class SCamPlus : VTOLMOD
         settings.CreateCustomLabel("Please feel free to @ me on the discord if");
         settings.CreateCustomLabel("you think of any more features I could add!");
         VTOLAPI.CreateSettingsMenu(settings);
+
+        //AddNewCameraMode(new CameraMode_TGP("tgp", "TGP"));
+        //AddNewCameraMode(new CameraMode_AceCombat("ace", "AceCombat"));
     }
 
     public void trackMinTime_Setting(float newval)
@@ -324,6 +333,12 @@ public class SCamPlus : VTOLMOD
         }
     }
 
+    //public static void AddNewCameraMode(CameraMode cameraMode) {
+    //    SCamPlus.settings = cameraMode.SpawnSettingsMenu(SCamPlus.settings);
+    //    VTOLAPI.CreateSettingsMenu(SCamPlus.settings);
+    //    SCamPlus.cameraModes.Add(cameraMode);
+    //}
+
     public static Vector3 GetTargetPos() {
         if (targetActor != null) {
             return targetActor.transform.position;
@@ -359,7 +374,7 @@ public class SCamPlus : VTOLMOD
             __instance.behaviorText.text = "Random";
             return;
         }
-        __instance.behaviorText.text = ((SCamPlus.SpectatorBehaviorsPlus)SCamPlus.sCamTraverse.Field("behavior").GetValue()).ToString();
+        __instance.behaviorText.text = ((SCamPlus.SpectatorBehaviorsPlus)currentBehaviour).ToString();
         return;
     }
 

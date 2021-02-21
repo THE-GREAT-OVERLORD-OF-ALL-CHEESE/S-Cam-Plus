@@ -1,7 +1,22 @@
 {
-  "name": "S Cam Plus",
-  "description": "Adds more modes to the S-Cam!",
-  "version": "1.5",
-  "dll file": "SCamPlus.dll",
-  "last edit": 637352540659483715
+    "best_value": "0.000",
+    "description": "# How to use:\r\n\r\nSame as the normal S-Cam, just keep cycling through the modes till you reach the modes I added!\r\n\r\n## Features:\r\n<b>\r\n-New camera modes\r\n\r\n-Hides your mouse pointer!\r\n\r\n-Ability to change the roll of all camera modes\r\n\r\n-Many many settings\r\n\r\n-Compatible with multiplayer\u2122\u2122\u2122\r\n</b>\r\n\r\n## New Modes:\r\n\r\n<b>-Ace Combat</b>\r\n\r\nThis camera mode tries to keep your aircraft and the closest aircraft/your locked target in the frame at once. Good for dogfights/recreating scenes from your favourite fighter jet anime!\r\n\r\n<b>-TGP</b>\r\n\r\nNow the TPG can be recorded with ease!\r\n\r\n<b>-Smoothed TGP</b>\r\n\r\nA smoothed version of the TGP so you can pretend you have a drone!\r\n\r\n<b>-HUD Mode</b>\r\n\r\nNow the HUD can be recorded with ease!\r\n\r\n<b>-External Camera</b>\r\n\r\nAllows you to film the external camera angles from the Cam menu on the MFDs\r\n\r\n<b>-Free Camera</b>\r\n\r\nA free camera that can be controlled with the keyboard and mouse. WASD to move, shift to move faster and left-click to cycle FoVs\r\n\r\n<b>-Smooth Zoom</b>\r\n\r\nA camera mode that is the same as the normal smooth S-Cam mode, except when you look at a vehicle it will zoom in on it!\r\n\r\nI plan to add more modes in updates!\r\n\r\n@ me if there's any more modes you want",
+    "dll_file": "SCamPlus.dll",
+    "download_count": 883,
+    "first_upload_date": "2020-09-11T16:17:39.668287Z",
+    "header_image": "/media/uploaded_mod_images/previewIofWfKzBhJ.png",
+    "is_public": true,
+    "last_update": "2021-02-17T20:59:08.783814Z",
+    "name": "S Cam Plus",
+    "pub_id": "oez467ve",
+    "ratings": {
+        "average": "0.000",
+        "count": 0
+    },
+    "repository": "https://github.com/THE-GREAT-OVERLORD-OF-ALL-CHEESE/S-Cam-Plus",
+    "tagline": "Adds more modes to the existing S-Cam!",
+    "thumbnail": "/media/thumbnails/uploaded_mod_images/previewIofWfKzBhJ_thumb.png",
+    "unlisted": false,
+    "user_uploaded_file": "/media/uploaded_files/X6ZWX9esYw/S_Cam_Plus.zip",
+    "version": "1.6"
 }

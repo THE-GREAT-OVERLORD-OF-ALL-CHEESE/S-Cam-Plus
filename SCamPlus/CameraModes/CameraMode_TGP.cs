@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Harmony;
+using UnityEngine;
 
 public class CameraMode_TGP : CameraMode
 {
-    public TargetingMFDPage tgpMFD;
+    private TargetingMFDPage tgpMFD;
 
     public CameraMode_TGP(string name, string shownName) : base(name, shownName)
     {

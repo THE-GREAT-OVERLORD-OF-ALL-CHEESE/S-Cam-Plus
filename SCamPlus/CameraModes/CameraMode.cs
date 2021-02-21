@@ -14,11 +14,6 @@ public class CameraMode
         this.shownName = shownName;
     }
 
-    public virtual Settings SpawnSettingsMenu(Settings settings)
-    {
-        return settings;
-    }
-
     public virtual void Start(FlybyCameraMFDPage mfdPage) {
     
     }

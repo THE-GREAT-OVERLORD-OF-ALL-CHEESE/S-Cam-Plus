@@ -27,6 +27,7 @@ public class SCamPlus : VTOLMOD
         AceCombat,
         //AceMissile
         TGP,
+        SmoothTGP,
         HUD,
         ExtCam,
         //SmoothZoom
@@ -34,6 +35,7 @@ public class SCamPlus : VTOLMOD
         //OverShoulder
         FreeCam
         //FreeCamParented
+        //SmartRandom
     }
 
     public enum UpType
@@ -48,7 +50,7 @@ public class SCamPlus : VTOLMOD
 
     public static FlybyCameraMFDPage sCam;
     public static Traverse sCamTraverse;
-    public static int ammountOfModes;
+    //public static int ammountOfModes;
 
     public static SpectatorBehaviorsPlus currentBehaviour;
 
@@ -119,7 +121,7 @@ public class SCamPlus : VTOLMOD
         VTOLAPI.SceneLoaded += SceneLoaded;
         VTOLAPI.MissionReloaded += MissionReloaded;
 
-        ammountOfModes = Enum.GetValues(typeof(SpectatorBehaviorsPlus)).Length;
+        //ammountOfModes = Enum.GetValues(typeof(SpectatorBehaviorsPlus)).Length;
 
         cameraModes = new List<CameraMode>();
         settings = new Settings(this);
@@ -183,8 +185,13 @@ public class SCamPlus : VTOLMOD
         settings.CreateCustomLabel("you think of any more features I could add!");
         VTOLAPI.CreateSettingsMenu(settings);
 
-        //AddNewCameraMode(new CameraMode_TGP("tgp", "TGP"));
-        //AddNewCameraMode(new CameraMode_AceCombat("ace", "AceCombat"));
+        AddNewCameraMode(new CameraMode_AceCombat("ace", "AceCombat"));
+        AddNewCameraMode(new CameraMode_TGP("tgp", "TGP"));
+        AddNewCameraMode(new CameraMode_SmoothTGP("smoothTgp", "SmoothTGP"));
+        AddNewCameraMode(new CameraMode_HUD("hud", "HUD"));
+        AddNewCameraMode(new CameraMode_ExtCam("ext", "ExtCam"));
+        AddNewCameraMode(new CameraMode_FreeCam("free", "FreeCam"));
+        AddNewCameraMode(new CameraMode_SmoothZoom("zoom", "SmoothZoom"));
     }
 
     public void trackMinTime_Setting(float newval)
@@ -333,11 +340,9 @@ public class SCamPlus : VTOLMOD
         }
     }
 
-    //public static void AddNewCameraMode(CameraMode cameraMode) {
-    //    SCamPlus.settings = cameraMode.SpawnSettingsMenu(SCamPlus.settings);
-    //    VTOLAPI.CreateSettingsMenu(SCamPlus.settings);
-    //    SCamPlus.cameraModes.Add(cameraMode);
-    //}
+    public static void AddNewCameraMode(CameraMode cameraMode) {
+        cameraModes.Add(cameraMode);
+    }
 
     public static Vector3 GetTargetPos() {
         if (targetActor != null) {

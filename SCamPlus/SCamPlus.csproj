@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SCamPlus</RootNamespace>
     <AssemblyName>SCamPlus</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,6 +70,11 @@
   <ItemGroup>
     <Compile Include="CameraModes\CameraMode.cs" />
     <Compile Include="CameraModes\CameraMode_AceCombat.cs" />
+    <Compile Include="CameraModes\CameraMode_ExtCam.cs" />
+    <Compile Include="CameraModes\CameraMode_SmoothZoom.cs" />
+    <Compile Include="CameraModes\CameraMode_HUD.cs" />
+    <Compile Include="CameraModes\CameraMode_SmoothTGP.cs" />
+    <Compile Include="CameraModes\CameraMode_FreeCam.cs" />
     <Compile Include="CameraModes\CameraMode_TGP.cs" />
     <Compile Include="FlyByCameraPatch.cs" />
     <Compile Include="Main.cs" />

@@ -54,16 +54,18 @@ public class CameraMode_SmoothZoom : CameraMode
         {
             Actor newTarget = null;
 
-            float distance = 10000;
+            float distance = 5000;
             foreach (Actor actor in TargetManager.instance.allActors)
             {
                 if (actor != null)
                 {
                     Vector3 offset = actor.transform.position - VRHead.instance.transform.position;
-                    if (actor != SCamPlus.player && Vector3.Angle(VRHead.instance.transform.forward, offset) < 10 && offset.magnitude < distance)
-                    {
-                        distance = offset.magnitude;
-                        newTarget = actor;
+                    if (actor.role == Actor.Roles.Air || actor.role == Actor.Roles.Missile || actor == SCamPlus.targetActor) {
+                        if (actor != SCamPlus.player && Vector3.Angle(VRHead.instance.transform.forward, offset) < 10 && offset.magnitude < distance)
+                        {
+                            distance = offset.magnitude;
+                            newTarget = actor;
+                        }
                     }
                 }
             }

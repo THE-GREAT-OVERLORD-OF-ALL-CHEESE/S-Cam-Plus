@@ -134,4 +134,19 @@ class Patch3
             }
         }
     }
+
+    [HarmonyPatch(typeof(FlybyCameraMFDPage), "OnQuickload")]
+    class Patch5
+    {
+        [HarmonyPrefix]
+        public static bool PreFix(FlybyCameraMFDPage __instance, ConfigNode qsNode)
+        {
+            ConfigNode node = qsNode.GetNode("SpectatorCamera");
+            if (node != null && node.GetValue<bool>("flyCamEnabled"))
+            {
+                __instance.EnableCamera();
+            }
+            return false;
+        }
+    }
 }

@@ -7,6 +7,18 @@ using System.Threading.Tasks;
 using Harmony;
 using UnityEngine;
 
+[HarmonyPatch(typeof(EjectionSeat), "Start")]
+class EjectionSeat_Start
+{
+    [HarmonyPostfix]
+    public static void Postfix(EjectionSeat __instance)
+    {
+        if (SCamPlus.playerVisibility == false) {
+            __instance.gameObject.AddComponent<PlayerVisibilityManager>();
+        }
+    }
+}
+
 [HarmonyPatch(typeof(FlybyCameraMFDPage), "Awake")]
 class Patch0
 {

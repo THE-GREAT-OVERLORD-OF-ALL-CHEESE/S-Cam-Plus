@@ -28,6 +28,7 @@ public class CameraMode_TGP : CameraMode
             mfdPage.flybyCam.transform.position = tgpMFD.targetingCamera.transform.position;
             mfdPage.flybyCam.transform.rotation = tgpMFD.targetingCamera.transform.rotation;
             mfdPage.flybyCam.fieldOfView = tgpMFD.targetingCamera.fieldOfView;
+            mfdPage.flybyCam.nearClipPlane = 0.5f;
             shownName = "TGP";
         }
         else if (mfdPage.weaponManager.opticalTargeter != null)

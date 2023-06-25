@@ -33,7 +33,7 @@ public class SCamPlus : VTOLMOD
         //SmoothZoom
         //GroundTrack2 --- Ground view that tracks 2 aircraft
         //OverShoulder
-        FreeCam
+        //FreeCam
         //FreeCamParented
         //SmartRandom
     }
@@ -57,7 +57,10 @@ public class SCamPlus : VTOLMOD
     public static TargetingMFDPage tgpMFD;
     public static ExternalCamManager extCamManager;
     public static float lastRenderTime;
-    
+
+
+    public UnityAction<bool> playerVisibility_changed;
+    public static bool playerVisibility = true;
 
     public UnityAction<int> up_changed;
     public static UpType upType = UpType.Stock;
@@ -142,6 +145,11 @@ public class SCamPlus : VTOLMOD
 
         settings.CreateCustomLabel("");
 
+        playerVisibility_changed += playerVisibility_Setting;
+        settings.CreateBoolSetting("Player Model Visibility", playerVisibility_changed, playerVisibility);
+
+        settings.CreateCustomLabel("");
+
         settings.CreateCustomLabel("Auto-Tracking Settings");
 
         trackMinTime_changed += trackMinTime_Setting;
@@ -190,7 +198,7 @@ public class SCamPlus : VTOLMOD
         AddNewCameraMode(new CameraMode_SmoothTGP("smoothTgp", "SmoothTGP"));
         AddNewCameraMode(new CameraMode_HUD("hud", "HUD"));
         AddNewCameraMode(new CameraMode_ExtCam("ext", "ExtCam"));
-        AddNewCameraMode(new CameraMode_FreeCam("free", "FreeCam"));
+        //AddNewCameraMode(new CameraMode_FreeCam("free", "FreeCam"));//scrapped cause it doesnt work
         AddNewCameraMode(new CameraMode_SmoothZoom("zoom", "SmoothZoom"));
     }
 
@@ -202,6 +210,11 @@ public class SCamPlus : VTOLMOD
     public void up_Setting(int newval)
     {
         upType = (UpType)newval;
+    }
+
+    public void playerVisibility_Setting(bool visible)
+    {
+        playerVisibility = visible;
     }
 
     public void aceMinFov_Setting(float newval)
@@ -270,7 +283,7 @@ public class SCamPlus : VTOLMOD
         aceMaxDistance = Mathf.Tan((90 - aceFovRange.min) * Mathf.Deg2Rad) * 30;
     }
 
-    void FixedUpdate() {
+    private void FixedUpdate() {
         if (TargetManager.instance != null) {
             if (player == null)
             {
@@ -328,7 +341,7 @@ public class SCamPlus : VTOLMOD
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (targetActor != null)
         {

@@ -35,8 +35,9 @@
     <Reference Include="0Harmony">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\oscar\Documents\GitHub\VTOLVR-Multiplayer\Dependencies\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\Dependencies\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\VTOLVR_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="ModLoader, Version=3.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -76,14 +77,13 @@
     <Compile Include="CameraModes\CameraMode_SmoothTGP.cs" />
     <Compile Include="CameraModes\CameraMode_FreeCam.cs" />
     <Compile Include="CameraModes\CameraMode_TGP.cs" />
+    <Compile Include="Components\PlayerVisibilityManager.cs" />
     <Compile Include="FlyByCameraPatch.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF EXIST "C:\Program Files (x86)\Steam\steamapps\common\VTOL VR\VTOLVR_ModLoader\VTOLVR-ModLoader.exe" (
-copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\VTOL VR\VTOLVR_ModLoader\projects\My Mods\S Cam Plus\Builds\SCamPlus.dll"
-)</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "D:\SteamLibrary\steamapps\common\VTOL VR\VTOLVR_ModLoader\projects\My Mods\S Cam Plus\Builds\SCamPlus.dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>

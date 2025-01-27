@@ -24,7 +24,7 @@ namespace CheeseMods.SCamPlus
     }
 
     [HarmonyPatch(typeof(FlybyCameraMFDPage), "Awake")]
-    class Patch0
+    class FlybyCameraMFDPage_Awake
     {
         [HarmonyPostfix]
         public static void Postfix(FlybyCameraMFDPage __instance)
@@ -37,7 +37,7 @@ namespace CheeseMods.SCamPlus
 
 
     [HarmonyPatch(typeof(FlybyCameraMFDPage), "Start")]
-    class Patch5
+    class FlybyCameraMFDPage_Start
     {
         [HarmonyPostfix]
         public static void Postfix(FlybyCameraMFDPage __instance)
@@ -55,7 +55,7 @@ namespace CheeseMods.SCamPlus
     }
 
     [HarmonyPatch(typeof(FlybyCameraMFDPage), "UpdateBehaviorText")]
-    class Patch1
+    class FlybyCameraMFDPage_UpdateBehaviorText
     {
         [HarmonyPrefix]
         public static bool Prefix(FlybyCameraMFDPage __instance)
@@ -66,7 +66,7 @@ namespace CheeseMods.SCamPlus
     }
 
     [HarmonyPatch(typeof(FlybyCameraMFDPage), "NextMode")]
-    class Patch2
+    class FlybyCameraMFDPage_NextMode
     {
         [HarmonyPrefix]
         public static bool Prefix(FlybyCameraMFDPage __instance)
@@ -108,7 +108,7 @@ namespace CheeseMods.SCamPlus
     }
 
     [HarmonyPatch(typeof(FlybyCameraMFDPage), "LateUpdate")]
-    class Patch3
+    class FlybyCameraMFDPage_LateUpdate
     {
         [HarmonyPrefix]
         public static bool Prefix(FlybyCameraMFDPage __instance)
@@ -141,7 +141,7 @@ namespace CheeseMods.SCamPlus
         }
 
         [HarmonyPatch(typeof(FlybyCameraMFDPage), "LateUpdate")]
-        class Patch4
+        class FlybyCameraMFDPage_LateUpdate
         {
             [HarmonyPostfix]
             public static void Postfix(FlybyCameraMFDPage __instance)
@@ -159,7 +159,7 @@ namespace CheeseMods.SCamPlus
         }
 
         [HarmonyPatch(typeof(FlybyCameraMFDPage), "OnQuickload")]
-        class Patch5
+        class FlybyCameraMFDPage_OnQuickload
         {
             [HarmonyPrefix]
             public static bool PreFix(FlybyCameraMFDPage __instance, ConfigNode qsNode)

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SCamPlus</RootNamespace>
     <AssemblyName>SCamPlus</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -32,16 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Users\oscar\Documents\GitHub\VTOLVR-Multiplayer\Dependencies\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Managed\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\VTOLVR_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="ModLoader, Version=3.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\ModLoader.dll</HintPath>
+    <Reference Include="ModLoader.Framework">
+      <HintPath>..\..\..\..\Managed\ModLoader.Framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -67,6 +67,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Users\oscar\Documents\GitHub\VTOLVR-Multiplayer\Dependencies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="VTOLAPI">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\3018410\3265689427\VTOLAPI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraModes\CameraMode.cs" />
@@ -84,6 +87,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "D:\SteamLibrary\steamapps\common\VTOL VR\VTOLVR_ModLoader\projects\My Mods\S Cam Plus\Builds\SCamPlus.dll"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "D:\SteamLibrary\steamapps\common\VTOL VR\@Mod Loader\Mods\S-CamPlus\SCamPlus.dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>
